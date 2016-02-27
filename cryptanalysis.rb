@@ -17,6 +17,16 @@ class Cryptanalysis
             mode == :decrypt ? decrypt : encrypt) #ciphertext/plaintext
   end
 
+  def Cryptanalysis.vigenere_cipher(text, key, mode = :+)
+    text = text_to_char_array(text).join #Eliminate unwanted symbols
+    i = 0
+    text.upcase.each_byte.reduce('') do |r, c|
+      r << (65 + (c.send(mode, key[i % key.length].ord)) % 26).chr
+      i += 1
+      r
+    end
+  end
+
   def Cryptanalysis.analyze_caesar(ciphertext)
     ciphertext_frequency      = character_frequency(ciphertext, :frequency)
     correlation_of_frequency  = {}
@@ -32,8 +42,8 @@ class Cryptanalysis
   end
 
   def Cryptanalysis.compute_ic(ciphertext)
-    chars = text_to_char_array(ciphertext)
-    occurrence = character_frequency(ciphertext, :occurrence)
+    chars       = text_to_char_array(ciphertext)
+    occurrence  = character_frequency(ciphertext, :occurrence)
 
     sum = 0.0
     @@alphabet.each_char { |c|

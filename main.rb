@@ -38,6 +38,20 @@ def compute_frequency
   puts "Text: %s\nFrequencies: %s" % [text, Cryptanalysis.character_frequency(text, :frequency)]
 end
 
+def vigenere_encrypt
+  text = get_input('Enter the name of the file containing the text to encrypt: ', 'Enter the text to encrypt: ')
+  key = get_cmd_entry('Enter the encryption key: ')
+
+  puts "Plaintext: %s\nCiphertext: %s\n" % [text, Cryptanalysis.vigenere_cipher(text, key)]
+end
+
+def vigenere_decrypt
+  text = get_input('Enter the name of the file containing the text to decrypt: ', 'Enter the text to decrypt: ')
+  key = get_cmd_entry('Enter the encryption key): ')
+
+  puts "Ciphertext: %s\nPlaintext: %s\n" % [text, Cryptanalysis.vigenere_cipher(text, key, :-)]
+end
+
 def get_input(file_message, cmd_message)
   (get_input_mode == :file) ? get_file_contents(file_message) : get_cmd_entry(cmd_message)
 end
@@ -67,6 +81,8 @@ menu = '
 4) Compute the Index of Coincidence for a string
 5) Compute the number of times each letter occurs in a string
 6) Compute the frequency at which each letter occurs in a string
+7) Encrypt a string with a Vigenere cipher
+8) Decrypt a Vigenere cipher with the key
 0) Quit'
 
 loop = true
@@ -87,6 +103,10 @@ while loop
       compute_occurrence
     when '6'
       compute_frequency
+    when '7'
+      vigenere_encrypt
+    when '8'
+      vigenere_decrypt
     when '0'
       puts 'exiting..'
       loop = false
