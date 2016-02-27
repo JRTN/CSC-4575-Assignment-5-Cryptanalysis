@@ -63,6 +63,6 @@ class Cryptanalysis
     @@alphabet.each_char  { |c| frequency[c.to_sym] = 0.0 }
     chars.each            { |c| frequency[c.to_sym] += increment }
 
-    frequency #Frequency of characters in array
+    frequency
   end
 end
