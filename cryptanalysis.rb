@@ -21,7 +21,7 @@ class Cryptanalysis
     text = text_to_char_array(text).join #Eliminate unwanted symbols
     i = 0
     text.upcase.each_byte.reduce('') do |r, c|
-      r << (65 + (c.send(mode, key[i % key.length].ord)) % 26).chr
+      r << (65 + (c.send(mode, key[i % key.length].ord)) % ALPHABET.size).chr
       i += 1
       r
     end
