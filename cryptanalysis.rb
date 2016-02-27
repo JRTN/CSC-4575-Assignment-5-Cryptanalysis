@@ -20,11 +20,11 @@ class Cryptanalysis
   def Cryptanalysis.vigenere_cipher(text, key, mode = :+)
     text = text_to_char_array(text).join #Eliminate unwanted symbols
     i = 0
-    text.upcase.each_byte.reduce('') do |r, c|
+    text.upcase.each_byte.reduce('') { |r, c|
       r << (65 + (c.send(mode, key[i % key.length].ord)) % ALPHABET.size).chr
       i += 1
       r
-    end
+    }
   end
 
   def Cryptanalysis.analyze_caesar(ciphertext)
