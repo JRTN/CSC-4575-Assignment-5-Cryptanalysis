@@ -16,7 +16,7 @@ end
 
 def caesar_analyze
   text = get_input('Enter the name of the file containing the text to be analyzed: ', 'Enter the text to be analyzed: ')
-  result = Cryptanalysis.analyze_caesar(text)
+  result = Cryptanalysis.analyze_caesar(text).to_a.take(5).to_h
 
   puts 'Top 5 possible shifts: '
   choice = 0

@@ -40,7 +40,7 @@ class Cryptanalysis
       correlation_of_frequency[i] = frequency
     }
 
-    correlation_of_frequency.sort_by { |_, v| -v }.take(5).to_h #Top 5 results
+    correlation_of_frequency.sort_by { |_, v| -v }.to_h
   end
 
   def Cryptanalysis.compute_ic(ciphertext)
